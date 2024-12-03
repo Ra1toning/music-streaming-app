@@ -1,10 +1,11 @@
+// app/layout.tsx (Server Component)
 import type { Metadata } from "next";
 import { Figtree } from "next/font/google";
-import localFont from "next/font/local";
 import "./globals.css";
 import Sidebar from "@/components/Sidebar";
+import Header from "@/components/Header";
 
-const figtree = Figtree({subsets: ["latin"]});
+const figtree = Figtree({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Sonara",
@@ -18,12 +19,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={figtree.className}
-      >
-        <Sidebar>
-          {children}  
-        </Sidebar>
+      <body className={`${figtree.className} overflow-hidden`}>
+        <div className="flex flex-col h-screen">
+          <Header />
+          <Sidebar>{children}</Sidebar>
+        </div>
       </body>
     </html>
   );
