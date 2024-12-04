@@ -1,89 +1,90 @@
 {
-    "albums": [
-      {
-        "id": "weeknd-dawn-fm",
-        "title": "Dawn FM",
-        "artist": "The Weeknd",
-        "genre": "pop",
-        "imageSrc": "/images/album/weeknd.jpg",
-        "albumLink": "/albums/weeknd-dawn-fm",
-        "duration": "51:49",
-        "totalTracks": 16,
-        "tracks": [
-          {
-            "title": "Dawn FM",
-            "audioUrl": "/audio/weeknd-dawnfm.mp3",
-            "duration": "2:45",
-            "plays": 4544210
-          },
-          {
-            "title": "How Do I Make You Love Me?",
-            "audioUrl": "/audio/weeknd-hdimylm.mp3",
-            "duration": "3:12",
-            "plays": 3221654
-          },
-          {
-            "title": "Sacrifice",
-            "audioUrl": "/audio/weeknd-sacrifice.mp3",
-            "duration": "3:05",
-            "plays": 5112987
-          }
-        ]
-      },
-      {
-        "id": "gorillaz-tired-influence",
-        "title": "The Tired Influence",
-        "artist": "Gorillaz",
-        "genre": "pop",
-        "imageSrc": "/images/album/gorillaz.jpg",
-        "albumLink": "/albums/gorillaz-tired-influence",
-        "duration": "45:22",
-        "totalTracks": 12,
-        "tracks": []
-      },
-      {
-        "id": "akg",
-        "title": "Asian Kung-Fu Generations",
-        "artist": "Asian Kung-Fu Generations",
-        "genre": "rock",
-        "imageSrc": "/images/album/akg.jpg",
-        "albumLink": "/albums/akg",
-        "duration": "42:15",
-        "totalTracks": 10,
-        "tracks": []
-      },
-      {
-        "id": "hmk",
-        "title": "Home Made Kazoku",
-        "artist": "Home Made Kazoku",
-        "genre": "rock",
-        "imageSrc": "/images/album/hmk.jpg",
-        "albumLink": "/albums/hmk",
-        "duration": "39:47",
-        "totalTracks": 11,
-        "tracks": []
-      },
-      {
-        "id": "miles-kind-of-blue",
-        "title": "Kind of Blue",
-        "artist": "Miles Davis",
-        "genre": "jazz",
-        "imageSrc": "/images/album/miles.jpg",
-        "albumLink": "/albums/miles-kind-of-blue",
-        "duration": "45:44",
-        "totalTracks": 5,
-        "tracks": []
-      },
-      {
-        "id": "coltrane-a-love-supreme",
-        "title": "A Love Supreme",
-        "artist": "John Coltrane",
-        "genre": "jazz",
-        "imageSrc": "/images/album/coltrane.jpg",
-        "albumLink": "/albums/coltrane-a-love-supreme",
-        "duration": "33:56",
-        "totalTracks": 4,
-        "tracks": []
-      }
-    ]
-  }
+  "albums": [
+    {
+      "id": "weeknd-dawn-fm",
+      "title": "Dawn FM",
+      "artist": "The Weeknd",
+      "genre": "pop",
+      "imageSrc": "/images/album/weeknd.jpg",
+      "albumLink": "/albums/weeknd-dawn-fm",
+      "duration": "51:49",
+      "totalTracks": 16,
+      "tracks": [
+        {
+          "title": "Dawn FM",
+          "audioUrl": "/audio/weeknd-dawnfm.mp3",
+          "duration": "2:45",
+          "plays": 4544210
+        },
+        {
+          "title": "How Do I Make You Love Me?",
+          "audioUrl": "/audio/weeknd-hdimylm.mp3",
+          "duration": "3:12",
+          "plays": 3221654
+        },
+        {
+          "title": "Sacrifice",
+          "audioUrl": "/audio/weeknd-sacrifice.mp3",
+          "duration": "3:05",
+          "plays": 5112987
+        }
+      ]
+    },
+    {
+      "id": "gorillaz-tired-influence",
+      "title": "The Tired Influence",
+      "artist": "Gorillaz",
+      "genre": "pop",
+      "imageSrc": "/images/album/gorillaz.jpg",
+      "albumLink": "/albums/gorillaz-tired-influence",
+      "duration": "45:22",
+      "totalTracks": 12,
+      "tracks": []
+    },
+    
+    {
+      "id": "akg",
+      "title": "Asian Kung-Fu Generations",
+      "artist": "Asian Kung-Fu Generations",
+      "genre": "rock",
+      "imageSrc": "/images/album/akg.jpg",
+      "albumLink": "/albums/akg",
+      "duration": "42:15",
+      "totalTracks": 10,
+      "tracks": []
+    },
+    {
+      "id": "hmk",
+      "title": "Home Made Kazoku",
+      "artist": "Home Made Kazoku",
+      "genre": "rock",
+      "imageSrc": "/images/album/hmk.jpg",
+      "albumLink": "/albums/hmk",
+      "duration": "39:47",
+      "totalTracks": 11,
+      "tracks": []
+    },
+    {
+      "id": "miles-kind-of-blue",
+      "title": "Kind of Blue",
+      "artist": "Miles Davis",
+      "genre": "jazz",
+      "imageSrc": "/images/album/miles.jpg",
+      "albumLink": "/albums/miles-kind-of-blue",
+      "duration": "45:44",
+      "totalTracks": 5,
+      "tracks": []
+    },
+    {
+      "id": "coltrane-a-love-supreme",
+      "title": "A Love Supreme",
+      "artist": "John Coltrane",
+      "genre": "jazz",
+      "imageSrc": "/images/album/coltrane.jpg",
+      "albumLink": "/albums/coltrane-a-love-supreme",
+      "duration": "33:56",
+      "totalTracks": 4,
+      "tracks": []
+    }
+  ]
+}

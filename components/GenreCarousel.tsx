@@ -6,9 +6,9 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import TrendingItem from "@/components/TrendingItem";
+import AlbumCard from "@/components/AlbumCard";
 
-interface TrendingItemType {
+interface AlbumCardType {
   title: string;
   imageSrc: string;
   albumLink: string;
@@ -16,10 +16,10 @@ interface TrendingItemType {
 
 interface GenreCarouselProps {
   genre: string;
-  trendingItems: TrendingItemType[];
+  albumCards: AlbumCardType[];
 }
 
-const GenreCarousel: React.FC<GenreCarouselProps> = ({ genre, trendingItems }) => {
+const GenreCarousel: React.FC<GenreCarouselProps> = ({ genre, albumCards }) => {
   return (
     <div className="mt-8">
       <div className="flex items-center justify-between mb-4">
@@ -33,9 +33,9 @@ const GenreCarousel: React.FC<GenreCarouselProps> = ({ genre, trendingItems }) =
         className="w-full relative"
       >
         <CarouselContent className="flex gap-4 md:gap-6 lg:gap-8">
-          {trendingItems.map((item, index) => (
+          {albumCards.map((item, index) => (
             <CarouselItem key={index} className="sm:basis-auto lg:basis-auto">
-              <TrendingItem
+              <AlbumCard
                 title={item.title}
                 imageSrc={item.imageSrc}
                 albumLink={item.albumLink}

@@ -3,10 +3,10 @@ import GenreCarousel from "@/components/GenreCarousel";
 
 export default async function Home() {
   const albums = await fetchAlbums();
-  const trendingItems = groupAlbumsByGenre(albums);
+  const albumCards = groupAlbumsByGenre(albums);
 
   return (
-    <div className="bg-neutral-900 h-full w-full overflow-auto">
+    <div className="bg-neutral-900 h-full w-full rounded-lg overflow-auto">
       {/* Top Banner Section */}
       <div
         className="relative w-full h-3/6 bg-cover bg-center"
@@ -17,11 +17,11 @@ export default async function Home() {
 
       {/* Content Section */}
       <div className="px-6 mt-6">
-        {Object.keys(trendingItems).map((genre) => (
+        {Object.keys(albumCards).map((genre) => (
           <GenreCarousel
             key={genre}
             genre={genre}
-            trendingItems={trendingItems[genre].map(album => ({
+            albumCards={albumCards[genre].map(album => ({
               title: album.title,
               imageSrc: album.imageSrc,
               albumLink: album.albumLink
