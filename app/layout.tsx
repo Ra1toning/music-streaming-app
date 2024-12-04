@@ -4,6 +4,9 @@ import { Figtree } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/components/Sidebar";
 import Header from "@/components/Header";
+import SupabaseProvider from "@/providers/SupabaseProvider";
+import UserProvider from "@/providers/UserProvider";
+import ModalProvider from "@/providers/ModalProvider";
 
 const figtree = Figtree({ subsets: ["latin"] });
 
@@ -20,10 +23,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${figtree.className} overflow-hidden`}>
-        <div className="flex flex-col h-screen">
-          <Header />
-          <Sidebar>{children}</Sidebar>
-        </div>
+        <SupabaseProvider>
+          <UserProvider>
+            <div className="flex flex-col h-screen">
+              <ModalProvider />
+              <Header />
+              <Sidebar>{children}</Sidebar>
+            </div>
+          </UserProvider>
+        </SupabaseProvider>
       </body>
     </html>
   );

@@ -49,7 +49,7 @@ export default async function TrackPage({
   }
 
   return (
-    <div className="bg-neutral-900 text-white h-full rounded-lg overflow-hidden shadow-lg">
+    <div className="bg-neutral-900 text-white h-full rounded-lg overflow-auto shadow-lg">
       <div
         className="relative w-full h-60 bg-cover bg-center"
         style={{
