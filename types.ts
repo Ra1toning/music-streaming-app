@@ -74,3 +74,19 @@ export interface Subscription {
   trail_end?: string;
   prices?: Price;
 }
+
+export interface Albums {
+  id: string;
+  title: string;
+  img_uri: string; 
+  artist_id: string; 
+  description: string; 
+  song_id: string; 
+}
+
+export interface Playlists {
+  id: string;
+  title: string;
+  user_id: string; 
+  song_id: string; 
+}

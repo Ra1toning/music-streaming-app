@@ -3,16 +3,22 @@
 import { HiHome, HiSearch } from "react-icons/hi";
 import Image from "next/image";
 import Button from "./Button";
-import { BiSearch } from "react-icons/bi";
+import { BiSearch, BiSolidMusic, BiSolidUser, BiSolidUserPlus } from "react-icons/bi";
 import { useRouter } from "next/navigation";
 import useAuthModal from "@/hooks/useAuthModal";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { userUser } from "@/hooks/useUser";
+import React from "react";
+import useArtistModal from "@/hooks/useArtistModal";
+import useSongModal from "@/hooks/useSongModal";
+
 
 const Header = () => {
 
   const router = useRouter();
   const authModal = useAuthModal();
+  const songModal = useSongModal(); 
+  const artistModal = useArtistModal();
   const supabaseClient = useSupabaseClient();
   const { user } = userUser();
 
@@ -66,6 +72,17 @@ const Header = () => {
         {/* Sign In болон Sign Up товчнууд болон Profile */}
         {user ? (
           <div className="flex items-center gap-x-4">
+            {user?.id === process.env.NEXT_PUBLIC_SUPER_ADMIN_ID && (
+              <React.Fragment>
+                <Button className="bg-transparent" onClick={() => artistModal.onOpen()}>
+                  <BiSolidUserPlus  className="text-2xl text-neutral-100"/>
+                </Button>
+                <Button className="bg-transparent" onClick={() => songModal.onOpen()}>
+                  <BiSolidMusic  className="text-2xl text-neutral-100"/>
+                </Button>
+              </React.Fragment>
+            )
+            }
             {/* Logout Button */}
             <Button onClick={handleLogout} className="bg-white px-6 py-2">Logout</Button>
             {/* Profile image */}
@@ -79,10 +96,9 @@ const Header = () => {
                   className=" absolute object-cover rounded-full" 
                 />
               ) : (
-                <p></p>
+                <BiSolidUser className="bg-neutral-100 h-9 w-9 absolute object-cover rounded-full"/>
               )}
             </div>
-
           </div>
         ) : (
           <div className="flex justify-between items-center gap-x-4">

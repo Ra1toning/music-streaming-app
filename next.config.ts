@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
       {
         hostname: "avatars.githubusercontent.com",
       },
+      {
+        hostname: "khqmudymcervnlczfktx.supabase.co",
+      },
     ]
   }
 };

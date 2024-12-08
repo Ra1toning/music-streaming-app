@@ -34,6 +34,7 @@ const AuthModal = () => {
       description="Today is your sound. Make it yours. Sign in to start streaming"
       isOpen={isOpen}
       onChange={onChange}
+      type="auth"
     >
       <Auth
         supabaseClient={supabaseClient}

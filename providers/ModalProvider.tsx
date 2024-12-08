@@ -1,6 +1,8 @@
 'use client'
 
+import ArtistModal from "@/components/ArtistModal";
 import AuthModal from "@/components/AuthModal";
+import SongModal from "@/components/SongModal";
 import { useEffect, useState } from "react"
 
 
@@ -18,6 +20,8 @@ const ModalProvider = () => {
     return (
         <>
            <AuthModal />
+           <ArtistModal />
+           <SongModal />
         </>
     );
 }
