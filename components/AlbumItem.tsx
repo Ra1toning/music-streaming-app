@@ -2,21 +2,18 @@
 
 import React from 'react';
 import Image from "next/image";
-import Link from "next/link";
-import useLoadArtistImage from "@/hooks/useLoadArtistImage";
-import useLoadSongImage from "@/hooks/useLoadSongImage";
-import { Artist, Song } from "@/types"
+import { Artist, Albums } from "@/types";
+import useLoadAlbumImage from '@/hooks/useLoadAlbumImage';
 
-interface SongItemProps {
-    data: Song,
-    artist: Artist,
-    onClick: (id: string) => void
+interface AlbumItemProps {
+    data: Albums;
+    artist?: Artist;
+    onClick: (id: string) => void;
 };
 
-const SongItem: React.FC<SongItemProps> = ({data, artist, onClick}) => {
-    const songImagePath = useLoadSongImage(data);
-    const artistImagePath = useLoadArtistImage(artist); 
-    
+const AlbumItem: React.FC<AlbumItemProps> = ({ data, artist, onClick }) => {
+    const albumImageUrl = useLoadAlbumImage(data); 
+
     return (
         <div 
             className="relative bg-neutral-800 rounded-lg overflow-hidden shadow-md w-48 h-48 group cursor-pointer"
@@ -24,7 +21,7 @@ const SongItem: React.FC<SongItemProps> = ({data, artist, onClick}) => {
         >
             <div className="relative">
                 <Image
-                    src={songImagePath || '/placeholder-image.png'}
+                    src={albumImageUrl || '/placeholder-image.png'}
                     alt={data.title}
                     width={192}
                     height={192}
@@ -35,14 +32,16 @@ const SongItem: React.FC<SongItemProps> = ({data, artist, onClick}) => {
                         <h2 className="text-white text-sm font-medium line-clamp-2 text-start transition-transform duration-300 ease-in-out group-hover:translate-y-0 group-hover:font-semibold">
                             {data.title}
                         </h2>
-                        <p className="text-neutral-300 text-xs line-clamp-1">
-                            {artist.author}
-                        </p>
+                        {artist && (
+                            <p className="text-neutral-300 text-xs line-clamp-1">
+                                {artist.author}
+                            </p>
+                        )}
                     </div>
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default SongItem;
+export default AlbumItem;

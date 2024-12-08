@@ -26,6 +26,7 @@ export interface Song {
   image_uri: string;
   user_id: string;
   artist_id: string;
+  album_id: string;
 }
 
 export interface Product {
@@ -81,8 +82,10 @@ export interface Albums {
   img_uri: string; 
   artist_id: string; 
   description: string; 
-  song_id: string; 
+  albumLink: string; 
+  genre: string;    
 }
+
 
 export interface Playlists {
   id: string;

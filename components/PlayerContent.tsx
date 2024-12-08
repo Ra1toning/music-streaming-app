@@ -3,7 +3,7 @@
 import { Song } from "@/types";
 import MediaCards from "./MediaCards";
 import usePlayer from "@/hooks/usePlayer";
-import useGetArtists from "@/hooks/useGetArtists";
+import useGetArtists from "@/hooks/getArtists";
 import { PuffLoader } from "react-spinners";
 import { BsFillPauseFill, BsFillPlayFill, BsFillSkipBackwardFill, BsFillSkipForwardFill, BsFillVolumeMuteFill, BsFillVolumeUpFill } from "react-icons/bs";
 import VolumeSlider from "./VolumeSlider";

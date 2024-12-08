@@ -1,5 +1,6 @@
 'use client'
 
+import AlbumModal from "@/components/AlbumModal";
 import ArtistModal from "@/components/ArtistModal";
 import AuthModal from "@/components/AuthModal";
 import SongModal from "@/components/SongModal";
@@ -22,6 +23,7 @@ const ModalProvider = () => {
            <AuthModal />
            <ArtistModal />
            <SongModal />
+           <AlbumModal />
         </>
     );
 }

@@ -9,7 +9,7 @@ import { userUser } from "@/hooks/useUser";
 import { FieldValues, set, SubmitHandler, useForm } from "react-hook-form";
 import Input from "./Input";
 import Button from "./Button";
-import useGetArtists from "@/hooks/useGetArtists";
+import useGetArtists from "@/hooks/getArtists";
 import React from "react";
 import { PuffLoader } from "react-spinners";
 import ModalArtistSelection from "./ModalArtistSelection";

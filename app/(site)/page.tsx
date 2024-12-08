@@ -1,14 +1,14 @@
-import { fetchAlbums, groupAlbumsByGenre } from "@/utils/dataUtils";
+
 import GenreCarousel from "@/components/GenreCarousel";
-import getSongs from "@/actions/getSongs";
-import PageContent from "@/components/PageContent";
 import getArtists from "@/actions/getArtists";
+import getAlbums from "@/actions/getAlbums";
+import { groupAlbumsByGenre } from "@/utils/dataUtils";
 
 export default async function Home() {
-  const albums = await fetchAlbums();
+  const albums = await getAlbums();
+  const artists = await getArtists();
+
   const albumCards = groupAlbumsByGenre(albums);
-  const songs = await getSongs();
-  const  artists  = await getArtists();
 
   return (
     <div className="bg-neutral-900 h-full w-full rounded-lg overflow-auto">
@@ -22,18 +22,13 @@ export default async function Home() {
 
       {/* Content Section */}
       <div className="px-6 mt-6">
-        {/* {Object.keys(albumCards).map((genre) => (
+        {Object.keys(albumCards).map((genre) => (
           <GenreCarousel
             key={genre}
             genre={genre}
-            albumCards={albumCards[genre].map(album => ({
-              title: album.title,
-              imageSrc: album.imageSrc,
-              albumLink: album.albumLink
-            }))}
+            albumCards={albumCards[genre]}
           />
-        ))} */}
-        <PageContent songs={songs} artists={artists}/>
+        ))}
       </div>
     </div>
   );

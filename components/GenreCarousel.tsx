@@ -1,3 +1,4 @@
+// /components/GenreCarousel.tsx
 import React from "react";
 import {
   Carousel,
@@ -7,23 +8,18 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import AlbumCard from "@/components/AlbumCard";
-
-interface AlbumCardType {
-  title: string;
-  imageSrc: string;
-  albumLink: string;
-}
+import { Albums } from "@/types";
 
 interface GenreCarouselProps {
   genre: string;
-  albumCards: AlbumCardType[];
+  albumCards: Albums[];
 }
 
 const GenreCarousel: React.FC<GenreCarouselProps> = ({ genre, albumCards }) => {
   return (
     <div className="mt-8">
       <div className="flex items-center justify-between mb-4">
-        <h1 className="text-white text-2xl font-semibold">{genre}</h1>
+        <h1 className="text-white text-2xl font-semibold capitalize">{genre}</h1>
       </div>
       <Carousel
         opts={{
@@ -33,13 +29,9 @@ const GenreCarousel: React.FC<GenreCarouselProps> = ({ genre, albumCards }) => {
         className="w-full relative"
       >
         <CarouselContent className="flex gap-4 md:gap-6 lg:gap-8">
-          {albumCards.map((item, index) => (
-            <CarouselItem key={index} className="sm:basis-auto lg:basis-auto">
-              <AlbumCard
-                title={item.title}
-                imageSrc={item.imageSrc}
-                albumLink={item.albumLink}
-              />
+          {albumCards.map((album) => (
+            <CarouselItem key={album.id} className="sm:basis-auto lg:basis-auto">
+              <AlbumCard album={album} />
             </CarouselItem>
           ))}
         </CarouselContent>
