@@ -9,7 +9,7 @@ export default async function getArtistById(artistId: string): Promise<Artist | 
   });
 
   const { data, error } = await supabase
-    .from("artists")
+    .from("artist")
     .select("*")
     .eq("id", artistId)
     .single();

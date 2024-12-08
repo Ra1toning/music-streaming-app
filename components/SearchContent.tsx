@@ -10,7 +10,7 @@ interface SearchContentProps {
 }
 
 const SearchContent: React.FC<SearchContentProps> = ({songs, artists}) => {
-    const onPlay = useOnPlay(songs);
+    const { onPlay } = useOnPlay(songs);
     if(songs?.length === 0) {
         return <div className="flex w-full items-center justify-center text-neutral-400">No songs found</div>
     }

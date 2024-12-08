@@ -17,6 +17,25 @@ export interface Props{
     [propName: string]: any;
 }
 
+/**
+ * MyUserContextProvider компонент нь хэрэглэгчийн мэдээллийг агуулсан контекст провайдер юм.
+ * 
+ * @param {Props} props - Компонентийн пропс.
+ * @returns {JSX.Element} - UserContext.Provider элемент.
+ * 
+ * @remarks
+ * Энэ компонент нь хэрэглэгчийн сессийн мэдээлэл, хэрэглэгчийн дэлгэрэнгүй мэдээлэл болон захиалгын мэдээллийг агуулдаг.
+ * 
+ * @example
+ * ```tsx
+ * <MyUserContextProvider>
+ *   <YourComponent />
+ * </MyUserContextProvider>
+ * ```
+ * 
+ * @component
+ * @category Hooks
+ */
 export const MyUserContextProvider = (props: Props) => {
     const {session, isLoading: isUserLoading, supabaseClient: supabase} = useSessionContext();
 

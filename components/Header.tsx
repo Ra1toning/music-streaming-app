@@ -20,6 +20,7 @@ import useSongModal from "@/hooks/useSongModal";
 import useAlbumModal from "@/hooks/useAlbumModal";
 import Link from "next/link";
 
+
 const Header = () => {
   const router = useRouter();
   const authModal = useAuthModal();
@@ -50,7 +51,7 @@ const Header = () => {
   return (
     <div className="h-fit mx-6 my-2 shadow-md">
       <div className="w-full flex items-center justify-between">
-        {/* Logo (Visible on large screens) */}
+        {/* Logo */}
         <Link href="/">
           <div className="hidden md:flex items-center gap-x-2">
             <Image src="/images/logo.png" alt="Sonara Logo" width={40} height={40} />
@@ -58,7 +59,7 @@ const Header = () => {
           </div>
         </Link>
 
-        {/* Search Section (Visible on large screens) */}
+        {/* Search Section */}
         <div className="hidden md:flex items-center bg-neutral-800 rounded-2xl px-4 py-2 w-[450px]">
           <HiSearch className="text-gray-400 mr-2" size={20} />
           <input
@@ -96,30 +97,30 @@ const Header = () => {
                 <Button className="bg-transparent" onClick={() => songModal.onOpen()}>
                   <BiSolidMusic className="text-2xl text-neutral-100"/>
                 </Button>
-                {/* New Album Creation Button */}
                 <Button className="bg-transparent" onClick={() => albumModal.onOpen()}>
                   <BiAlbum className="text-2xl text-neutral-100"/>
                 </Button>
               </React.Fragment>
             )}
             
-            {/* Logout Button */}
             <Button onClick={handleLogout} className="bg-white px-6 py-2">Logout</Button>
             
-            {/* Profile image */}
-            <div className="mr-10 rounded-full bg-neutral-600 cursor-pointer flex items-center">
-              {user?.user_metadata?.avatar_url ? (
-                <Image 
-                  src={user?.user_metadata?.avatar_url} 
-                  alt="User Avatar" 
-                  width={40} 
-                  height={40} 
-                  className="absolute object-cover rounded-full" 
-                />
-              ) : (
-                <BiSolidUser className="bg-neutral-100 h-9 w-9 absolute object-cover rounded-full"/>
-              )}
-            </div>
+            {/* Profile image with Link */}
+            <Link href="/profile">
+              <div className="mr-10 rounded-full bg-neutral-600 cursor-pointer flex items-center">
+                {user?.user_metadata?.avatar_url ? (
+                  <Image 
+                    src={user?.user_metadata?.avatar_url} 
+                    alt="User Avatar" 
+                    width={40} 
+                    height={40} 
+                    className="absolute object-cover rounded-full" 
+                  />
+                ) : (
+                  <BiSolidUser className="bg-neutral-100 h-9 w-9 absolute object-cover rounded-full"/>
+                )}
+              </div>
+            </Link>
           </div>
         ) : (
           <div className="flex justify-between items-center gap-x-4">

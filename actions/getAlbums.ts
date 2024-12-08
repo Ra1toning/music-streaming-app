@@ -16,7 +16,7 @@ const getAlbums = async (): Promise<Albums[]> => {
     console.log(error);
   }
 
-  return (data as Albums[]) || [];
+  return (data as any) || [];
 };
 
 export default getAlbums;

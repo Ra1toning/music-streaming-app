@@ -8,6 +8,15 @@ interface PlayerStore {
     reset: () => void;
 }
 
+/**
+ * @description PlayerStore төрлийн төлөвийг үүсгэхэд ашиглагдана.
+ * @returns PlayerStore төрлийн төлөвийг буцаана.
+ * @example
+ * const player = usePlayer();
+ * player.setId('song123');
+ * player.setIds(['song123', 'song456']);
+ * player.reset();
+ */
 const usePlayer = create<PlayerStore>((set) => ({
     ids: [],
     activeId: undefined,

@@ -1,32 +1,27 @@
-'use client';
-
+'use client'
 import React from 'react';
 import Image from "next/image";
-import { useRouter } from 'next/navigation';
-import { Artist, Albums } from "@/types";
-import useLoadAlbumImage from '@/hooks/useLoadAlbumImage';
+import { Artist, Song } from "@/types";
+import useLoadSongImage from '@/hooks/useLoadSongImage';
+import useOnPlay from '@/hooks/useOnPlay';
 
-interface AlbumItemProps {
-    data: Albums;
+interface SongItemProps {
+    data: Song;
     artist?: Artist;
+    onClick: (id: string) => void;
 };
 
-const AlbumItem: React.FC<AlbumItemProps> = ({ data, artist }) => {
-    const router = useRouter();
-    const albumImageUrl = useLoadAlbumImage(data);
-
-    const handleClick = () => {
-        router.push(`/albums/${data.id}`);
-    };
-
+const SongItem: React.FC<SongItemProps> = ({ data, artist, onClick }) => {
+    const songImageUrl = useLoadSongImage(data); 
+    
     return (
         <div 
             className="relative bg-neutral-800 rounded-lg overflow-hidden shadow-md w-48 h-48 group cursor-pointer"
-            onClick={handleClick}
+            onClick={() => onClick(data.id)}
         >
             <div className="relative">
                 <Image
-                    src={albumImageUrl || '/images/album/default.jpg'}
+                    src={songImageUrl || '/images/album/default.jpg'}
                     alt={data.title}
                     width={192}
                     height={192}
@@ -49,4 +44,4 @@ const AlbumItem: React.FC<AlbumItemProps> = ({ data, artist }) => {
     );
 };
 
-export default AlbumItem;
+export default SongItem;

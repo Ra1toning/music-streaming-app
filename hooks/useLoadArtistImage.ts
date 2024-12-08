@@ -1,6 +1,12 @@
 import { Artist } from "@/types";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 
+/**
+ * @function useLoadArtistImage
+ * @description Supabase ашиглан уран бүтээлчийн зургийг ачаалдаг hook.
+ * @param {Artist} artist - Уран бүтээлчийн мэдээлэл агуулсан объект.
+ * @returns {string | null} - Уран бүтээлчийн зургийн нийтийн URL эсвэл null.
+ */
 const useLoadArtistImage = (artist: Artist) => {
     const supabaseClient = useSupabaseClient();
 

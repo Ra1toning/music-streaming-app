@@ -18,7 +18,7 @@ const FavoritePageContent : React.FC<FavoritePageContentProps>= ({songs, artists
     const {user, isLoading} = userUser();
     const router = useRouter();
     const authModal = useAuthModal();
-    const onPlay = useOnPlay(songs);
+    const { onPlay } = useOnPlay(songs);
 
     useEffect(() => {
         if(!isLoading && !user) {

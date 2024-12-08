@@ -15,6 +15,82 @@ interface PlayerContentProps {
     songUrl: string;
 }
 
+/**
+ * PlayerContent компонент нь дуу тоглуулагчийн UI болон функциональ байдлыг хариуцдаг.
+ * 
+ * @param {PlayerContentProps} props - Компонентийн пропс.
+ * @param {Song} props.song - Одоогийн тоглож буй дууны мэдээлэл.
+ * @param {string} props.songUrl - Одоогийн тоглож буй дууны URL.
+ * 
+ * @returns {JSX.Element} - PlayerContent компонентийн JSX.
+ * 
+ * @component
+ * @example
+ * <PlayerContent song={currentSong} songUrl={currentSongUrl} />
+ */
+
+/**
+ * Дуу тоглуулах эсэхийг хариуцдаг функц.
+ * @function
+ * @name handlePlay
+ */
+
+/**
+ * Дууны дараагийн дууг тоглуулах функц.
+ * @function
+ * @name onPlayNext
+ */
+
+/**
+ * Дууны өмнөх дууг тоглуулах функц.
+ * @function
+ * @name onPlayPrevious
+ */
+
+/**
+ * Дууны дууг хаах/нээх функц.
+ * @function
+ * @name handleMute
+ */
+
+/**
+ * Дууны тоглуулах хугацааг форматлах функц.
+ * @function
+ * @name formatTime
+ * @param {number} seconds - Хугацаа секундээр.
+ * @returns {string} - Форматлагдсан хугацаа.
+ */
+
+/**
+ * Дууны тоглуулах хугацааг өөрчлөх функц.
+ * @function
+ * @name handleTrackClick
+ * @param {React.MouseEvent<HTMLDivElement>} e - Хулганын үйлдэл.
+ */
+
+/**
+ * Дууны тоглуулах хугацааг шинэчлэх useEffect.
+ * @function
+ * @name useEffect
+ */
+
+/**
+ * Дууг тоглуулах үед дууны мэдээллийг шинэчлэх useEffect.
+ * @function
+ * @name useEffect
+ */
+
+/**
+ * Дууны дууг шинэчлэх useEffect.
+ * @function
+ * @name useEffect
+ */
+
+/**
+ * Дууны үргэлжлэх хугацааг шинэчлэх useEffect.
+ * @function
+ * @name useEffect
+ */
 const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
     const player = usePlayer();
     const { artists, isLoading: artistLoading } = useGetArtists();

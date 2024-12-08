@@ -1,8 +1,8 @@
 'use client'
 
 import React from 'react';
-import { Artist, Albums } from "@/types";
-import AlbumItem from './AlbumItem';
+import { Artist, Song } from "@/types";
+import SongItem from './SongItem';
 import {  
   Carousel,  
   CarouselContent,  
@@ -10,26 +10,28 @@ import {
   CarouselNext,
   CarouselPrevious
 } from "@/components/ui/carousel";
-
-interface PageContentProps { 
-    albums: Albums[]; 
+import useOnPlay from '@/hooks/useOnPlay';
+ 
+interface SongContentProps { 
+    songs: Song[]; 
     artists: Artist[]; 
     title?: string; 
 }; 
-
-const PageContent : React.FC<PageContentProps> = ({ 
-    albums, 
+ 
+const SongContent : React.FC<SongContentProps> = ({ 
+    songs, 
     artists, 
-    title = "Albums" 
+    title = "Songs" 
 }) => { 
-    if (albums?.length === 0) { 
+    const { onPlay, playAllSongs } = useOnPlay(songs); 
+    if (songs?.length === 0) { 
         return ( 
             <div className="mt-4 text-neutral-400 w-full flex items-center justify-center"> 
-                No albums found 
+                No songs found 
             </div> 
         ); 
     } 
-
+ 
     return ( 
         <div className="mt-8 mx-5">
             <div className="flex items-center justify-between mb-4">
@@ -44,15 +46,15 @@ const PageContent : React.FC<PageContentProps> = ({
                 className="w-full relative" 
             > 
                 <CarouselContent className="flex gap-4 md:gap-6 lg:gap-8">
-                    {albums.map((album) => ( 
+                    {songs.map((song) => ( 
                         <CarouselItem 
-                            key={album.id}  
+                            key={song.id}  
                             className="sm:basis-auto lg:basis-auto" 
                         > 
-                            <AlbumItem 
-                                data={album} 
-                                artist={artists.find((artist) => artist.id === album.artist_id)} 
-                                 
+                            <SongItem 
+                                data={song} 
+                                artist={artists.find((artist) => artist.id === song.artist_id)} 
+                                onClick={(id) => onPlay(id)}  
                             /> 
                         </CarouselItem> 
                     ))} 
@@ -65,5 +67,5 @@ const PageContent : React.FC<PageContentProps> = ({
         </div>
     ); 
 }; 
-
-export default PageContent;
+ 
+export default SongContent;
