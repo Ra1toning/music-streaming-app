@@ -32,7 +32,7 @@ const Header = () => {
   const handleLogout = async () => {
     const { error } = await supabaseClient.auth.signOut();
 
-    router.refresh();
+    router.push("/");
 
     if (error) {
       console.log(error);
