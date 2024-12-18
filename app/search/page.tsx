@@ -10,7 +10,7 @@ export default async function SearchPage({
 }: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
-  const resolvedParams = await searchParams; // Always treat searchParams as a Promise
+  const resolvedParams = await searchParams; 
   const title = typeof resolvedParams?.title === "string" ? resolvedParams.title : "";
 
   const songs = await getSongsByTitle(title);

@@ -23,8 +23,8 @@ const FavoritePageContent: React.FC<FavoritePageContentProps> = ({ songs, artist
         if (!isLoading && !user) {
             authModal.onOpen("sign_in");
             router.replace("/");
-        }  
-    }, [user, isLoading, authModal, router]);
+        }
+    }, [isLoading, user]);
 
     if (songs?.length === 0) {
         return <div className="flex w-full items-center justify-center text-neutral-400">No favorite songs found</div>
