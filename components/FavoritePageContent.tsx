@@ -13,31 +13,35 @@ interface FavoritePageContentProps {
     artists: Artist[];
 }
 
-const FavoritePageContent : React.FC<FavoritePageContentProps>= ({songs, artists}) => {
-
-    const {user, isLoading} = userUser();
+const FavoritePageContent: React.FC<FavoritePageContentProps> = ({ songs, artists }) => {
+    const { user, isLoading } = userUser();
     const router = useRouter();
     const authModal = useAuthModal();
     const { onPlay } = useOnPlay(songs);
 
     useEffect(() => {
-        if(!isLoading && !user) {
+        if (!isLoading && !user) {
             authModal.onOpen("sign_in");
             router.replace("/");
-        }
-    }, [user, isLoading]);
+        }  
+    }, [user, isLoading, authModal, router]);
 
-    if(songs?.length === 0) {
+    if (songs?.length === 0) {
         return <div className="flex w-full items-center justify-center text-neutral-400">No favorite songs found</div>
     }
 
-  return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 mt-4 px-4 gap-4">
-        {songs?.map((song) => (
-            <MediaCards key={song.id} data={song} artist={artists.filter((artist => artist.id === song.artist_id))[0]} onClick={(id: string) => onPlay(id)}/>
-        ))}   
-    </div>
-  )
+    return (
+        <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 mt-4 px-4 gap-4">
+            {songs?.map((song) => (
+                <MediaCards
+                    key={song.id}
+                    data={song}
+                    artist={artists.filter((artist => artist.id === song.artist_id))[0]}
+                    onClick={(id: string) => onPlay(id)}
+                />
+            ))}
+        </div>
+    )
 }
 
 export default FavoritePageContent;

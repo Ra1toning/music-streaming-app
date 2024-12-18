@@ -12,7 +12,7 @@ interface LikeButtonProps {
     songId: string
 };
 
-const LikeButton : React.FC<LikeButtonProps> = ({songId}) => {
+const LikeButton: React.FC<LikeButtonProps> = ({ songId }) => {
 
     const router = useRouter();
     const { supabaseClient } = useSessionContext();
@@ -24,28 +24,28 @@ const LikeButton : React.FC<LikeButtonProps> = ({songId}) => {
     const Icon = isLiked ? HiHeart : HiOutlineHeart;
 
     const handleClick = async () => {
-        if(!user) {
+        if (!user) {
             return authModal.onOpen("sign_in");
         }
 
-        if(isLiked) {
-            const {error} = await supabaseClient
-            .from('favorites')
-            .delete()
-            .eq('user_id', user?.id)
-            .eq('song_id', songId);
+        if (isLiked) {
+            const { error } = await supabaseClient
+                .from('favorites')
+                .delete()
+                .eq('user_id', user?.id)
+                .eq('song_id', songId);
 
-            if(error) {
+            if (error) {
                 toast.error("Something went wrong");
             } else {
                 setIsLiked(false);
             }
         } else {
-            const {error} = await supabaseClient
-            .from('favorites')
-            .insert([{user_id: user?.id, song_id: songId}]);
+            const { error } = await supabaseClient
+                .from('favorites')
+                .insert([{ user_id: user?.id, song_id: songId }]);
 
-            if(error) {
+            if (error) {
                 toast.error("Something went wrong");
             } else {
                 setIsLiked(true);
@@ -56,33 +56,31 @@ const LikeButton : React.FC<LikeButtonProps> = ({songId}) => {
     }
 
     useEffect(() => {
-        if(!user) {
+        if (!user) {
             return;
         }
 
         const fetchData = async () => {
-            const {data, error} = await supabaseClient
-            .from('favorites')
-            .select('*')
-            .eq('user_id', user?.id)
-            .eq('song_id', songId)
-            .maybeSingle();
+            const { data, error } = await supabaseClient
+                .from('favorites')
+                .select('*')
+                .eq('user_id', user?.id)
+                .eq('song_id', songId)
+                .maybeSingle();
 
-            if(!error && data) {
+            if (!error && data) {
                 setIsLiked(true);
-            }   
+            }
         }
         fetchData();
 
-    }, [songId, supabaseClient, user?.id]);
+    }, [songId, supabaseClient, user]);
 
-  return (
-    <button onClick={handleClick} type="button" className="cursor-pointer ml-auto hover:opacity-75 transition">
-        <Icon className={`text-lg ${isLiked ? "text-emerald-400" : 
-        "text-neutral-400"
-        }`} />
-    </button>
-  )
+    return (
+        <button onClick={handleClick} type="button" className="cursor-pointer ml-auto hover:opacity-75 transition">
+            <Icon className={`text-lg ${isLiked ? "text-emerald-400" : "text-neutral-400"}`} />
+        </button>
+    )
 }
 
-export default LikeButton
+export default LikeButton;

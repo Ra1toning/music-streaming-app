@@ -6,7 +6,7 @@ import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { userUser } from "@/hooks/useUser";
-import { FieldValues, set, SubmitHandler, useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Input from "./Input";
 import Button from "./Button";
 import useGetArtists from "@/hooks/getArtists";
@@ -20,12 +20,11 @@ const SongModal = () => {
     const songModal = useSongModal();
     const supabaseClient = useSupabaseClient();
     const router = useRouter();
-    const { user } =  userUser();
+    const { user } = userUser();
 
     const { artists, isLoading: artistLoading } = useGetArtists();
 
     const [isLoading, setIsLoading] = useState(false);
-
     const [selectedArtistId, setSelectedArtistId] = useState<string | null>(null);
 
     const {register, handleSubmit, reset, formState: {errors}} = useForm<FieldValues>({
@@ -38,7 +37,7 @@ const SongModal = () => {
         }
     });
 
-    const onChange = (open : boolean) => {
+    const onChange = (open: boolean) => {
         if(!open) {
           reset();
           songModal.onClose();
@@ -53,8 +52,9 @@ const SongModal = () => {
         const songFile = data?.song_uri?.[0];
 
         if(!pictureFile || !songFile || !selectedArtistId) {
-          toast.error("Please select a song and image file");
-          return
+          toast.error("Please select a song, image file, and an artist");
+          setIsLoading(false);
+          return;
         }
 
         const uniqueId = nanoid();
@@ -83,15 +83,13 @@ const SongModal = () => {
 
         const {error : supabaseError } = await supabaseClient
         .from("songs")
-        .insert(
-          {
+        .insert({
             title: data?.title,
             song_uri: songData.path,
             image_uri: imageData.path,
             user_id: user?.id,
             artist_id: selectedArtistId,
-          }
-        )
+        });
 
         if(supabaseError) {
           setIsLoading(false);
@@ -104,9 +102,8 @@ const SongModal = () => {
         songModal.onClose();
         router.refresh();
 
-      } catch (error) {
+      } catch (_) {
         toast.error("An error occurred while creating the song");
-      } finally {
         setIsLoading(false);
       }
     };
@@ -134,7 +131,7 @@ const SongModal = () => {
         )}
 
         <div>
-          <div className="pb-1">Select a image file</div>
+          <div className="pb-1">Select an image file</div>
           <Input
             id="image_uri"
             type="file"
@@ -156,26 +153,30 @@ const SongModal = () => {
             placeholder="Song audio file"
           />
         </div>
-        {errors?.title && (
+        {errors?.song_uri && (
           <div className="w-full flex items-end justify-end">
             <p className="text-xs text-red-500">Song file is required</p>
           </div>
         )}
-         <div>
+        
+        <div>
           <div className="pb-1">Choose an artist</div>
           <div className="grid grid-cols-3 gap-2 py-4 cursor-pointer">
             {artistLoading ? (
-              <React.Fragment>
-                <div className="w-full flex items-center justify-center col-span-3">
-                  <PuffLoader size={50} color="#10B981" />
-                </div>
-              </React.Fragment>
+              <div className="w-full flex items-center justify-center col-span-3">
+                <PuffLoader size={50} color="#10B981" />
+              </div>
             ) : (
-              <React.Fragment>
+              <>
                 {artists?.map((artist) => (
-                  <ModalArtistSelection key={artist.id} data={artist} onClick={() => handleSelectedArtist(artist.id)} selected={selectedArtistId === artist.id}/>
+                  <ModalArtistSelection 
+                    key={artist.id} 
+                    data={artist} 
+                    onClick={() => handleSelectedArtist(artist.id)} 
+                    selected={selectedArtistId === artist.id}
+                  />
                 ))}
-              </React.Fragment>
+              </>
             )}
           </div>
         </div>

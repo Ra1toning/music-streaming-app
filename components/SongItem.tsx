@@ -3,7 +3,6 @@ import React from 'react';
 import Image from "next/image";
 import { Artist, Song } from "@/types";
 import useLoadSongImage from '@/hooks/useLoadSongImage';
-import useOnPlay from '@/hooks/useOnPlay';
 
 interface SongItemProps {
     data: Song;

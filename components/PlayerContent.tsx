@@ -111,7 +111,6 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
       },
       onplay: () => {
           setIsPlaying(true);
-          // Duration-г энд дахин шалгах
           if (duration === 0 && sound) {
               const currentDuration = sound.duration() || 0;
               setDuration(currentDuration);
@@ -126,7 +125,6 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
       },
       format: ["mp3"],
     });
-  
 
     const Icon = isPlaying ? BsFillPauseFill : BsFillPlayFill;
     const VolumeIcon = volume === 0 ? BsFillVolumeMuteFill : BsFillVolumeUpFill;
@@ -175,15 +173,14 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
           const trackWidth = trackRef.current.clientWidth;
           const clickPosition = e.nativeEvent.offsetX;
           const percent = clickPosition / trackWidth;
-  
+
           const newTime = percent * duration;
-  
+
           if (newTime >= 0 && newTime <= duration) {
               sound.seek(newTime);
               setProgress(percent * 100);
               setCurrentTime(newTime);
               
-              // Хэрэв тоглж байгаа бол үргэлж тоглох
               if (!isPlaying) {
                   sound.play();
                   setIsPlaying(true);
@@ -191,8 +188,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
           }
       }
     };
-  
-  
+
     const handleMute = () => {
         setVolume(volume === 0 ? 0.5 : 0);
     };
@@ -200,9 +196,9 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
     useEffect(() => {
         const interval = setInterval(() => {
             if (sound && isPlaying) {
-                const currentTime = sound.seek() || 0;
-                setCurrentTime(currentTime);
-                setProgress((currentTime / duration) * 100);
+                const currentT = sound.seek() || 0;
+                setCurrentTime(currentT);
+                setProgress((currentT / duration) * 100);
             }
         }, 1000);
 
@@ -216,7 +212,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
                 sound.unload();
             }
         };
-    }, [songUrl, play]);
+    }, [songUrl, play, sound]);
 
     useEffect(() => {
         if (sound) {
@@ -231,7 +227,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
               setDuration(currentDuration);
           }
       }
-  }, [sound, duration]);
+    }, [sound, duration]);
 
     if (artistLoading) {
         return (

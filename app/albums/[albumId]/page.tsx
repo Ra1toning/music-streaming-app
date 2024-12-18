@@ -38,7 +38,6 @@ export default function AlbumPage() {
   const { isLoading: isSongsLoading, songs } = useGetSongsByAlbumId(albumId);
   const { onPlay, playAllSongs } = useOnPlay(songs);
 
-  // Always call the hook, even if album is not yet available.
   const albumImageUrl = useLoadAlbumImage(album);
   const displayedAlbumImage = albumImageUrl || '/images/album/default.jpg';
 
@@ -88,7 +87,7 @@ export default function AlbumPage() {
         </div>
         <div className="bg-neutral-800 rounded-lg overflow-hidden shadow-md">
           <div className="p-6">
-            <h2 className="text-2xl font-bold mb-4">Дуудлууд</h2>
+            <h2 className="text-2xl font-bold mb-4">Songs</h2>
             <div className="overflow-x-auto">
               <table className="w-full text-left table-auto border-collapse">
                 <thead className="bg-neutral-700 text-white">
@@ -109,7 +108,10 @@ export default function AlbumPage() {
                           {index + 1}
                         </td>
                         <td className="py-3 px-4 border-b border-neutral-600">
-                          <button onClick={() => handlePlay(song.song_uri)} className={`text-green-400 hover:underline ${currentPlaying === song.song_uri ? 'font-bold' : ''}`}>
+                          <button 
+                            onClick={() => handlePlay(song.id)} 
+                            className={`text-green-400 hover:underline ${currentPlaying === song.song_uri ? 'font-bold' : ''}`}
+                          >
                             {song.title}
                           </button>
                         </td>
@@ -121,7 +123,7 @@ export default function AlbumPage() {
                   ) : (
                     <tr>
                       <td colSpan={3} className="py-3 px-4 border-b border-neutral-600 text-gray-400">
-                        Дуудлууд байхгүй байна.
+                        Дуунууд байхгүй байна.
                       </td>
                     </tr>
                   )}
