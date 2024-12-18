@@ -3,16 +3,15 @@ import getSongsByTitle from "@/actions/getSongsByTitle";
 import SearchContent from "@/components/SearchContent";
 import SearchInput from "@/components/SearchInput";
 
-interface SearchPageProps {
-  searchParams: {
-    title: string;
-  }
-};
+export const revalidate = 0;
 
-export const revalidate = 0; 
-
-const SearchPage = async ({searchParams}: SearchPageProps) => {
-  const songs = await getSongsByTitle(searchParams.title);
+export default async function SearchPage({
+  searchParams,
+}: {
+  searchParams: { title?: string | string[] };
+}) {
+  const title = typeof searchParams.title === 'string' ? searchParams.title : '';
+  const songs = await getSongsByTitle(title);
   const artists = await getArtists();
 
   return (
@@ -30,6 +29,4 @@ const SearchPage = async ({searchParams}: SearchPageProps) => {
       </div>
     </div>
   );
-};
-
-export default SearchPage;
+}
