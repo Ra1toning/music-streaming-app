@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { useSupabaseClient } from '@supabase/auth-helpers-react';
+import { User, useSupabaseClient } from '@supabase/auth-helpers-react';
 import { useRouter } from 'next/navigation';
 
 const Button = ({
@@ -27,7 +27,7 @@ const Button = ({
 export default function ProfilePage() {
   const supabaseClient = useSupabaseClient();
   const router = useRouter();
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

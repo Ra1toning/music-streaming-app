@@ -90,7 +90,7 @@ const AlbumModal = () => {
     setExpandedSongId(null);
   };
 
-  const updateSongEntry = (id: string, field: keyof SongEntry, value: any) => {
+  const updateSongEntry = (id: string, field: keyof SongEntry, value: string | File | null ) => {
     setSongs((prevSongs) =>
       prevSongs.map((song) =>
         song.id === id ? { ...song, [field]: value } : song

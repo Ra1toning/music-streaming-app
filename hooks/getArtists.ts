@@ -39,12 +39,7 @@ const useGetArtists = () => {
         setIsLoading(true);
     
         const fetchArtists = async () => {
-            const {data, error} = await supabaseClient.from("artist").select("*");
-    
-            if(error) {
-                setIsLoading(false);
-                return toast.error("An error occurred while fetching the artists");
-            }
+            const {data } = await supabaseClient.from("artist").select("*");
     
             setArtists((data as Artist[]) || []);
             setIsLoading(false);

@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 const dummyPlaylists = [
   {
@@ -43,7 +44,7 @@ const PlayLists = () => {
             key={playlist.id}
             className="bg-neutral-800 p-4 rounded-lg shadow-md hover:shadow-lg transition"
           >
-            <img
+            <Image
               src={playlist.image}
               alt={playlist.name}
               className="w-full h-40 object-cover rounded-md mb-3"

@@ -16,7 +16,7 @@ const getArtists = async (): Promise<Artist[]> => {
         console.log(error);
     }
 
-    return (data as any) || [];
+    return data ?? [];
 };
 
 export default getArtists;
