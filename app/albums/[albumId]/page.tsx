@@ -29,7 +29,6 @@ const Button = ({
     {children}
   </button>
 );
-
 export default function AlbumPage() {
   const params = useParams();
   const albumId = params.albumId as string;
@@ -38,7 +37,11 @@ export default function AlbumPage() {
   const { isLoading: isAlbumLoading, album } = useGetAlbumById(albumId);
   const { isLoading: isSongsLoading, songs } = useGetSongsByAlbumId(albumId);
   const { onPlay, playAllSongs } = useOnPlay(songs);
-  const albumImageUrl = album ? useLoadAlbumImage(album) : '/images/album/default.jpg';
+
+  // Always call the hook, even if album is not yet available.
+  const albumImageUrl = useLoadAlbumImage(album);
+  const displayedAlbumImage = albumImageUrl || '/images/album/default.jpg';
+
   const artist = useGetArtistName(album?.artist_id);
 
   const handlePlay = (songUri: string) => {
@@ -59,14 +62,14 @@ export default function AlbumPage() {
       <div
         className="relative w-full h-60 bg-cover bg-center"
         style={{
-          backgroundImage: `url(${albumImageUrl})`,
+          backgroundImage: `url(${displayedAlbumImage})`,
           filter: "blur(20px) brightness(0.5)",
         }}
       ></div>
       <main className="relative p-6 sm:p-8 sm:-mt-40 -mt-60">
         <div className="flex items-center space-x-6 sm:space-x-8 p-6">
           <Image
-            src={albumImageUrl || '/images/album/default.jpg'} 
+            src={displayedAlbumImage}
             alt={album.title || 'Альбомны зураг'}
             width={192}
             height={192}
@@ -117,7 +120,9 @@ export default function AlbumPage() {
                     ))
                   ) : (
                     <tr>
-                      <td colSpan={3} className="py-3 px-4 border-b border-neutral-600 text-gray-400">Дуудлууд байхгүй байна.</td>
+                      <td colSpan={3} className="py-3 px-4 border-b border-neutral-600 text-gray-400">
+                        Дуудлууд байхгүй байна.
+                      </td>
                     </tr>
                   )}
                 </tbody>
