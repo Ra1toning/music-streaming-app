@@ -20,7 +20,6 @@ import useSongModal from "@/hooks/useSongModal";
 import useAlbumModal from "@/hooks/useAlbumModal";
 import Link from "next/link";
 
-
 const Header = () => {
   const router = useRouter();
   const authModal = useAuthModal();
@@ -47,6 +46,8 @@ const Header = () => {
   const handleHomeClick = () => {
     router.push('/'); 
   };
+
+  const isAdmin = user?.user_metadata?.isAdmin === true;
 
   return (
     <div className="h-fit mx-6 my-2 shadow-md">
@@ -89,7 +90,7 @@ const Header = () => {
         {/* Sign In, Sign Up, or Profile Section */}
         {user ? (
           <div className="flex items-center gap-x-4">
-            {user?.id === process.env.NEXT_PUBLIC_SUPER_ADMIN_ID && (
+            {isAdmin && (
               <React.Fragment>
                 <Button className="bg-transparent" onClick={() => artistModal.onOpen()}>
                   <BiSolidUserPlus className="text-2xl text-neutral-100"/>
