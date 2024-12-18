@@ -8,10 +8,11 @@ import { useSupabaseClient } from "@supabase/auth-helpers-react";
  * @param {Albums} album - Object containing album information.
  * @returns {string | null} - Public URL of the album image or null.
  */
-const useLoadAlbumImage = (album: Albums) => {
+const useLoadAlbumImage = (album: Albums): string | null => {
+
     const supabaseClient = useSupabaseClient();
 
-    if (!album || !album.img_uri) {
+    if (!album?.img_uri) {
         return null;
     }
 
