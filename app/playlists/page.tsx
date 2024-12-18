@@ -44,11 +44,14 @@ const PlayLists = () => {
             key={playlist.id}
             className="bg-neutral-800 p-4 rounded-lg shadow-md hover:shadow-lg transition"
           >
-            <Image
-              src={playlist.image}
-              alt={playlist.name}
-              className="w-full h-40 object-cover rounded-md mb-3"
-            />
+            <div className="relative w-full h-40 rounded-md overflow-hidden mb-3">
+              <Image
+                src={playlist.image}
+                alt={playlist.name}
+                layout="fill"
+                objectFit="cover"
+              />
+            </div>
             <h2 className="text-lg font-semibold">{playlist.name}</h2>
             <p className="text-sm text-neutral-400">{playlist.description}</p>
           </div>

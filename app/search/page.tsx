@@ -6,11 +6,12 @@ import SearchInput from "@/components/SearchInput";
 export const revalidate = 0;
 
 export default async function SearchPage({
-  searchParams,
+  searchParams
 }: {
-  searchParams: { title?: string | string[] };
+  searchParams?: { [key: string]: string | string[] | undefined };
 }) {
-  const title = typeof searchParams.title === 'string' ? searchParams.title : '';
+  const titleParam = searchParams?.title;
+  const title = typeof titleParam === 'string' ? titleParam : '';
   const songs = await getSongsByTitle(title);
   const artists = await getArtists();
 
