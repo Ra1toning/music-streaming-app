@@ -3,7 +3,7 @@ import Modal from "./Modal"
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/navigation";
 import { userUser } from "@/hooks/useUser";
-import { FieldValues, set, SubmitHandler, useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Input from "./Input";
 import { useState } from "react";
 import Button from "./Button";
@@ -43,6 +43,7 @@ const ArtistModal = () => {
 
         if(!pictureFile || !user || errors.author) { 
           toast.error("Please fill all the fields");
+          setIsLoading(false);
           return;
         }
 
@@ -77,8 +78,8 @@ const ArtistModal = () => {
         reset();
         artistModal.onClose();
         router.refresh();
-      } catch (error) {
-        return toast.error("An error occurred while creating the artist");
+      } catch {
+        toast.error("An error occurred while creating the artist");
       } finally {
         setIsLoading(false);
       }
@@ -89,7 +90,7 @@ const ArtistModal = () => {
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-y-4">
          
           <div>
-            <div className="pb-1">Enter artist's name</div>
+            <div className="pb-1">Enter artist&apos;s name</div>
             <Input
               id="author"
               disabled={isLoading}
@@ -129,7 +130,7 @@ const ArtistModal = () => {
             </div>
           )}
           <div>
-            <div className="pb-1">Enter artist's Instagram</div>
+            <div className="pb-1">Enter artist&apos;s Instagram</div>
             <Input
               id="instagram"
               disabled={isLoading}
@@ -145,4 +146,4 @@ const ArtistModal = () => {
   )
 }
 
-export default ArtistModal
+export default ArtistModal;

@@ -102,7 +102,7 @@ const SongModal = () => {
         songModal.onClose();
         router.refresh();
 
-      } catch (_) {
+      } catch {
         toast.error("An error occurred while creating the song");
         setIsLoading(false);
       }

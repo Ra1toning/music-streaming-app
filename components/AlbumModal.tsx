@@ -204,7 +204,7 @@ const AlbumModal = () => {
       toast.success('Album and songs created successfully!');
       router.refresh();
       onChange(false);
-    } catch (error) {
+    } catch {
       toast.error('An unexpected error occurred');
     } finally {
       setIsLoading(false);
@@ -321,7 +321,7 @@ const AlbumModal = () => {
         {currentStep === STEPS.ARTIST_SELECT && (
           <div className="p-4 rounded-md">
             <h2 className="text-lg font-semibold mb-3">Step 2: Choose an Artist</h2>
-            <p className="text-sm  mb-4">Select the artist associated with this album.</p>
+            <p className="text-sm mb-4">Select the artist associated with this album.</p>
 
             {artistLoading ? (
               <div className="w-full flex items-center justify-center py-4">
@@ -348,10 +348,11 @@ const AlbumModal = () => {
         {currentStep === STEPS.ADD_SONGS && (
           <div className="p-4 rounded-md">
             <h2 className="text-lg font-semibold mb-3">Step 3: Add Songs</h2>
-            <p className="text-sm  mb-4">Add and configure your songs here. Each song needs a title, cover image, and audio file.</p>
+            <p className="text-sm mb-4">
+              Add and configure your songs here. Each song needs a title, cover image, and audio file.
+            </p>
 
             <div className="flex justify-between items-center mb-4">
-
               <Button
                 type="button"
                 onClick={addSongEntry}
@@ -362,16 +363,13 @@ const AlbumModal = () => {
             </div>
 
             {songs.length === 0 && (
-              <p className="text-sm">No songs added yet. Click "Add Song" to get started.</p>
+              <p className="text-sm">No songs added yet. Click &quot;Add Song&quot; to get started.</p>
             )}
 
             <div className="max-h-64 overflow-y-auto pr-2">
               {songs.map((song) => (
                 <div key={song.id} className="borderp-3 mb-3 rounded-md">
                   <div className="flex justify-between items-center mb-2">
-                    <div className="font-medium">
-                      
-                    </div>
                     <Button
                       type="button"
                       onClick={() => toggleSongEntry(song.id)}
