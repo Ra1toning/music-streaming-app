@@ -5,13 +5,15 @@ import SearchInput from "@/components/SearchInput";
 
 export const revalidate = 0;
 
-export default async function SearchPage({
-  searchParams
-}: {
-  searchParams?: { [key: string]: string | string[] | undefined };
-}) {
-  const titleParam = searchParams?.title;
-  const title = typeof titleParam === 'string' ? titleParam : '';
+interface SearchPageProps {
+  searchParams?: {
+    title?: string;
+    [key: string]: string | string[] | undefined;
+  };
+}
+
+export default async function SearchPage({ searchParams }: SearchPageProps) {
+  const title = typeof searchParams?.title === "string" ? searchParams.title : "";
   const songs = await getSongsByTitle(title);
   const artists = await getArtists();
 
